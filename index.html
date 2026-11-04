@@ -578,9 +578,69 @@
         </div>
       </div>
 
+      <!-- Sección 2: Cobro con QR y Datos de Cuenta (Regla 1 y 2 GEMINI.md) -->
+      <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/80 space-y-3">
+        <h3 class="text-xs font-black uppercase tracking-wider text-amber-900">2. Cobro QR y Transferencia</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Alias de Cobro</label>
+            <input 
+              type="text" 
+              id="settingsAlias" 
+              placeholder="Ej: grooming.huellitas.mp" 
+              class="w-full px-3 py-2 rounded-xl border border-amber-200 focus:ring-2 focus:ring-amber-500 focus:outline-none text-xs font-semibold bg-white"
+            >
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Titular de la Cuenta</label>
+            <input 
+              type="text" 
+              id="settingsTitular" 
+              placeholder="Ej: Camila Ramos" 
+              class="w-full px-3 py-2 rounded-xl border border-amber-200 focus:ring-2 focus:ring-amber-500 focus:outline-none text-xs font-semibold bg-white"
+            >
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">CBU / CVU (Opcional)</label>
+          <input 
+            type="text" 
+            id="settingsCbu" 
+            placeholder="0000003100010002000300" 
+            class="w-full px-3 py-2 rounded-xl border border-amber-200 focus:ring-2 focus:ring-amber-500 focus:outline-none text-xs font-mono bg-white"
+          >
+        </div>
+      </div>
+
+      <!-- Sección 3: Programa de Fidelidad y Premios (Regla 5 GEMINI.md) -->
+      <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/80 space-y-3">
+        <h3 class="text-xs font-black uppercase tracking-wider text-amber-900">3. Fidelidad y Sellos Caninos</h3>
+        <div class="grid grid-cols-3 gap-2.5">
+          <div class="col-span-1">
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Sellos Meta</label>
+            <input 
+              type="number" 
+              id="settingsTargetStamps" 
+              min="1" 
+              max="20" 
+              class="w-full px-3 py-2 rounded-xl border border-amber-200 focus:ring-2 focus:ring-amber-500 focus:outline-none text-xs font-semibold bg-white"
+            >
+          </div>
+          <div class="col-span-2">
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Premio al completar</label>
+            <input 
+              type="text" 
+              id="settingsRewardDescription" 
+              placeholder="Ej: 1 Baño & Secado con Perfumado Gratis" 
+              class="w-full px-3 py-2 rounded-xl border border-amber-200 focus:ring-2 focus:ring-amber-500 focus:outline-none text-xs font-semibold bg-white"
+            >
+          </div>
+        </div>
+      </div>
+
       <!-- Sección 2: Mensaje de WhatsApp para Recordatorios -->
       <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/80 space-y-2">
-        <h3 class="text-xs font-black uppercase tracking-wider text-amber-900">2. Mensaje para Enviar Recordatorio</h3>
+        <h3 class="text-xs font-black uppercase tracking-wider text-amber-900">4. Mensaje para Enviar Recordatorio</h3>
         <textarea 
           id="settingsTemplate" 
           rows="3" 
@@ -1654,12 +1714,13 @@
 
     // Profile & Settings
     function openProfileModal() {
-      document.getElementById('settingsSalonName').value = settings.salonName || DEFAULT_SETTINGS.salonName;
-      document.getElementById('settingsAlias').value = settings.alias || DEFAULT_SETTINGS.alias || 'grooming.huellitas.mp';
-      document.getElementById('settingsCbu').value = settings.cbu || DEFAULT_SETTINGS.cbu || '0000003100010002000300';
-      document.getElementById('settingsTitular').value = settings.titular || DEFAULT_SETTINGS.titular || 'Camila Ramos';
-      document.getElementById('settingsTargetStamps').value = settings.targetStamps || DEFAULT_SETTINGS.targetStamps || 5;
-      document.getElementById('settingsRewardDescription').value = settings.rewardDescription || DEFAULT_SETTINGS.rewardDescription || '1 Baño & Secado con Perfumado Gratis';
+      const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+      setVal('settingsSalonName', settings.salonName || DEFAULT_SETTINGS.salonName);
+      setVal('settingsAlias', settings.alias || DEFAULT_SETTINGS.alias || 'grooming.huellitas.mp');
+      setVal('settingsCbu', settings.cbu || DEFAULT_SETTINGS.cbu || '0000003100010002000300');
+      setVal('settingsTitular', settings.titular || DEFAULT_SETTINGS.titular || 'Camila Ramos');
+      setVal('settingsTargetStamps', settings.targetStamps || DEFAULT_SETTINGS.targetStamps || 5);
+      setVal('settingsRewardDescription', settings.rewardDescription || DEFAULT_SETTINGS.rewardDescription || '1 Baño & Secado con Perfumado Gratis');
       document.getElementById('settingsSalonPhone').value = settings.salonPhone || '';
       document.getElementById('settingsTemplate').value = cleanWhatsAppText(settings.template || DEFAULT_SETTINGS.template);
       document.getElementById('settingsBookingToggle').checked = Boolean(settings.bookingEnabled);
@@ -1822,12 +1883,13 @@
     }
 
     function saveSettings() {
-      settings.salonName = document.getElementById('settingsSalonName').value.trim() || DEFAULT_SETTINGS.salonName;
-      settings.alias = document.getElementById('settingsAlias').value.trim() || 'grooming.huellitas.mp';
-      settings.cbu = document.getElementById('settingsCbu').value.trim() || '0000003100010002000300';
-      settings.titular = document.getElementById('settingsTitular').value.trim() || 'Camila Ramos';
-      settings.targetStamps = parseInt(document.getElementById('settingsTargetStamps').value, 10) || 5;
-      settings.rewardDescription = document.getElementById('settingsRewardDescription').value.trim() || '1 Baño & Secado con Perfumado Gratis';
+      const getVal = (id, fallback = '') => { const el = document.getElementById(id); return el ? el.value.trim() : fallback; };
+      settings.salonName = getVal('settingsSalonName', DEFAULT_SETTINGS.salonName);
+      settings.alias = getVal('settingsAlias', 'grooming.huellitas.mp');
+      settings.cbu = getVal('settingsCbu', '0000003100010002000300');
+      settings.titular = getVal('settingsTitular', 'Camila Ramos');
+      settings.targetStamps = parseInt(getVal('settingsTargetStamps', '5'), 10) || 5;
+      settings.rewardDescription = getVal('settingsRewardDescription', '1 Baño & Secado con Perfumado Gratis');
       settings.salonPhone = document.getElementById('settingsSalonPhone').value.trim();
       settings.template = cleanWhatsAppText(document.getElementById('settingsTemplate').value.trim() || DEFAULT_SETTINGS.template);
       settings.bookingEnabled = document.getElementById('settingsBookingToggle').checked;
