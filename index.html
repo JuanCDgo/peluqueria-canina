@@ -2827,12 +2827,17 @@
       };
 
       window.confirmClientBookingWhatsApp = async function() {
-        const name = (document.getElementById('bookingClientName').value || '').trim();
-        if (!name) {
-          alert('Por favor escribí tu nombre arriba de todo para confirmar el turno.');
-          document.getElementById('bookingClientName').focus();
+        const petEl = document.getElementById('bookingPetName');
+        const ownerEl = document.getElementById('bookingOwnerName');
+        const petName = (petEl ? petEl.value : '').trim();
+        const ownerName = (ownerEl ? ownerEl.value : '').trim();
+        if (!petName || !ownerName) {
+          alert('Por favor escribí el nombre de tu mascota y tu nombre arriba para confirmar el turno.');
+          if (!petName && petEl) petEl.focus();
+          else if (ownerEl) ownerEl.focus();
           return;
         }
+        const name = `${petName} (${ownerName})`;
         const dateStr = getActiveBookingDateStr();
         const hourStr = bookingState.selectedHour;
         if (!dateStr || !hourStr) {
@@ -2852,9 +2857,10 @@
         // Agendar y bloquear automáticamente en la nube
         latestDay.hours.push(hk);
         await saveCloudDay(dateStr, latestDay);
-        const detail = cleanWhatsAppText(document.getElementById('bookingServiceDetail').value || '');
+        const sizeInput = document.getElementById('bookingPetSize');
+        const petSize = sizeInput ? sizeInput.value : '';
         const cleanSrv = cleanWhatsAppText(bookingState.selectedService);
-        const srvText = detail ? (cleanSrv + ' (' + detail + ')') : cleanSrv;
+        const srvText = petSize ? (cleanSrv + ' (' + petSize + ')') : cleanSrv;
         await saveCloudSlotDetail(dateStr, hourStr, { n: name, s: srvText, t: 'client' });
 
         renderCloudBookingHoursUI();
