@@ -95,7 +95,7 @@
       <header class="pt-6 px-5 pb-4 bg-[#FEFCE8] sticky top-0 z-20 border-b border-amber-200/80">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 p-0.5 shadow-md flex-shrink-0 cursor-pointer" onclick="openProfileModal()">
+            <div class="w-12 h-12 rounded-full ring-2 ring-amber-600/30 p-0.5 shadow-sm flex-shrink-0 cursor-pointer" onclick="openProfileModal()">
               <div id="headerLogoContainer" class="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden border border-amber-100">
                 <span class="text-2xl" id="profileAvatar">🐶</span>
               </div>
@@ -103,10 +103,10 @@
             <div>
               <div class="flex flex-wrap items-center gap-1.5 cursor-pointer" onclick="openProfileModal()">
                 <h1 class="text-xl font-black tracking-tight text-slate-900" id="headerTitle">Grooming · Huellitas</h1>
-                <span id="turneroHeaderBadge" class="text-[10px] text-slate-500 bg-slate-200/90 px-2 py-0.5 rounded-full font-bold transition-colors">📅 Turnero OFF</span>
+                <span id="turneroHeaderBadge" class="text-[10px] text-slate-500 bg-slate-200/90 px-2 py-0.5 rounded-full font-bold transition-colors">Turnero OFF</span>
               </div>
               <p class="text-xs font-semibold text-amber-800 tracking-wide flex items-center gap-1.5" id="headerSubtitle">
-                <span>mis pichichos 🐾</span>
+                <span>mis pichichos</span>
                 <span class="text-amber-400">·</span>
                 <span class="text-[11px] font-medium text-slate-500" id="argClock">🇦🇷 --:-- hs</span>
               </p>
@@ -116,7 +116,10 @@
           <div class="flex items-center gap-2">
             <!-- QR Cobro Mostrador Button -->
             <button onclick="openQuickQrModal()" class="h-10 px-3.5 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center gap-1.5 text-amber-800 hover:bg-amber-100 active:scale-95 transition-transform shadow-sm font-bold text-xs" title="Cobro QR en mostrador">
-              <span>📷 QR</span>
+              <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+              </svg>
+              <span>QR</span>
             </button>
             
             <!-- Google Drive Backup Button -->
@@ -130,7 +133,9 @@
             <!-- Config Button -->
             <!-- Control Manual de Horarios / Agenda -->
             <button onclick="openOwnerAgendaModal()" class="w-10 h-10 rounded-full bg-white border border-amber-200 flex items-center justify-center text-amber-700 hover:bg-amber-50 active:scale-95 transition-transform shadow-sm" title="Control Manual de Agenda y Horarios (Ocupar / Liberar)">
-              <span class="text-base font-black">📅</span>
+              <svg class="w-4 h-4 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
             </button>
 
             <button onclick="openProfileModal()" class="w-10 h-10 rounded-full bg-white border border-amber-200 flex items-center justify-center text-slate-600 hover:bg-amber-50 active:scale-95 transition-transform shadow-sm" title="Ajustes y Turnero">
@@ -191,16 +196,13 @@
             Todos
           </button>
           <button onclick="setFilter('due')" id="filter-due" class="filter-pill px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap bg-white text-slate-600 border border-amber-200 transition-all">
-            ⏰ Toca Baño/Corte
+            Toca Baño/Corte
           </button>
           <button onclick="setFilter('corte')" id="filter-corte" class="filter-pill px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap bg-white text-slate-600 border border-amber-200 transition-all">
-            ✂️ Con Corte
+            Con Corte
           </button>
           <button onclick="setFilter('debt')" id="filter-debt" class="filter-pill px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap bg-white text-slate-600 border border-amber-200 transition-all">
-            💵 Con Saldo
-          </button>
-          <button onclick="setFilter('paid')" id="filter-paid" class="filter-pill px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap bg-white text-slate-600 border border-amber-200 transition-all">
-            ✓ Al Día
+            Con Saldo
           </button>
         </div>
       </header>
@@ -226,15 +228,15 @@
       <!-- Header del Turnero -->
       <div class="pt-6 px-5 pb-4 bg-white border-b border-amber-200 shadow-sm">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 p-0.5 shadow-md flex-shrink-0">
+          <div class="w-12 h-12 rounded-full ring-2 ring-amber-600/30 p-0.5 shadow-sm flex-shrink-0">
             <div id="bookingLogoContainer" class="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden border border-amber-100">
               <span class="text-2xl">🐶</span>
             </div>
           </div>
           <div>
-            <span class="text-[10px] uppercase tracking-wider font-black text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">Peluquería Canina</span>
+            <span class="text-[10px] uppercase tracking-wider font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">Peluquería Canina</span>
             <h1 class="text-xl font-black text-slate-900 mt-0.5" id="bookingSalonTitle">Grooming · Huellitas</h1>
-            <p class="text-xs text-slate-500">Reservá el turno de tu pichicho en segundos 🐾</p>
+            <p class="text-xs text-slate-500">Reservá el turno de tu mascota en pocos pasos</p>
           </div>
         </div>
       </div>
@@ -312,7 +314,7 @@
         </div>
 
         <!-- Resumen y Confirmación -->
-        <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-3xl border border-amber-200 space-y-3">
+        <div class="bg-amber-50/70 p-4 rounded-3xl border border-amber-200 space-y-3">
           <div class="flex items-center justify-between text-xs font-bold text-amber-950">
             <span>Resumen del turno:</span>
             <span id="bookingSummaryBadge" class="text-amber-800 bg-white px-2.5 py-0.5 rounded-full border border-amber-200">Incompleto</span>
@@ -748,7 +750,7 @@
       <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 space-y-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm ring-2 ring-emerald-500/20"></span>
             <span class="text-xs font-black uppercase tracking-wider text-amber-950">Google Drive Conectado</span>
           </div>
           <span id="cloudSyncBadge" class="text-[10px] font-black bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full">Automático ✓</span>
@@ -1139,12 +1141,31 @@
       }
     }
 
+    // Normalización de celular argentino (+54 9 ...) para WhatsApp infalible
+    function formatArgentineWhatsApp(rawPhone) {
+      let cleaned = String(rawPhone || '').replace(/\D/g, '');
+      if (!cleaned) return '';
+      if (cleaned.startsWith('549')) return cleaned;
+      if (cleaned.startsWith('54')) {
+        cleaned = cleaned.substring(2);
+        if (!cleaned.startsWith('9')) cleaned = '9' + cleaned;
+        return '54' + cleaned;
+      }
+      if (cleaned.startsWith('15') && cleaned.length === 10) {
+        cleaned = cleaned.substring(2);
+      }
+      if (!cleaned.startsWith('9')) {
+        cleaned = '9' + cleaned;
+      }
+      return '54' + cleaned;
+    }
+
     function shareCurrentClientLoyaltyWhatsApp() {
       if (!currentLoyaltyClientId) return;
       const client = clients.find(c => c.id === currentLoyaltyClientId);
       if (!client) return;
 
-      const phone = (client.phone || '').replace(/\D/g, '');
+      const phone = formatArgentineWhatsApp(client.phone);
       const baseUrl = window.location.origin + window.location.pathname;
       const passUrl = baseUrl + '?pass=' + client.id;
       const stamps = client.stamps || 0;
@@ -1153,8 +1174,8 @@
       const msg = '¡Hola ' + (client.owner || 'Familia') + '! 🐾 Te compartimos la *Tarjeta Digital de Huellitas* de *' + client.name + '* en *' + settings.salonName + '*.\n\nYa acumuló *' + stamps + ' de ' + target + ' patitas* para su próximo premio: *' + (settings.rewardDescription || 'Baño Gratis') + '*.\n\nPodés ver su tarjeta acá:\n' + passUrl;
 
       const waUrl = phone 
-        ? 'https://wa.me/' + (phone.startsWith('54') ? phone : '549' + phone) + '?text=' + encodeURIComponent(msg)
-        : 'https://wa.me/?text=' + encodeURIComponent(msg);
+        ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`
+        : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
 
       window.open(waUrl, '_blank');
     }
@@ -1195,7 +1216,7 @@
       for (let i = 0; i < target; i++) {
         const isFilled = i < stamps;
         const div = document.createElement('div');
-        div.className = 'h-16 rounded-2xl flex flex-col items-center justify-center font-black text-xs transition-all shadow-sm ' + (isFilled ? 'bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-amber-300' : 'bg-amber-50 text-slate-300 border border-amber-100');
+        div.className = 'h-16 rounded-2xl flex flex-col items-center justify-center font-black text-xs transition-all shadow-sm ' + (isFilled ? 'bg-amber-600 text-white' : 'bg-amber-50 text-slate-300 border border-amber-100');
         div.innerHTML = '<span class="text-xl">' + (isFilled ? '🐾' : '○') + '</span><span class="text-[9px] mt-0.5">' + (i + 1) + '</span>';
         grid.appendChild(div);
       }
@@ -1379,18 +1400,17 @@
         const stamps = c.stamps || 0;
         const hasReward = stamps >= targetStamps;
         const rewardBadgeHtml = hasReward 
-          ? '<span class="px-2 py-0.2 rounded-full text-[10px] font-black bg-amber-500 text-white animate-pulse">🏆 ¡Premio Listo!</span>'
+          ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-600 text-white shadow-sm">Premio Listo</span>'
           : '';
 
         const loyaltyBarHtml = '<div class="flex items-center justify-between bg-amber-50/60 p-2 rounded-2xl border border-amber-100/80 mb-2">' +
           '<div class="flex items-center gap-1.5 flex-wrap">' +
-            '<span class="text-xs">🐾</span>' +
             '<span class="text-xs font-bold text-amber-900">' + stamps + '/' + targetStamps + ' patitas</span>' +
             rewardBadgeHtml +
           '</div>' +
           '<div class="flex items-center gap-1">' +
-            '<button onclick="addLoyaltyStamp(\'' + c.id + '\')" class="px-2 py-1 rounded-xl bg-white hover:bg-amber-100 text-amber-800 font-bold text-[11px] border border-amber-200 shadow-sm active:scale-95 transition-all" title="Sumar sello">+ Patita 🐾</button>' +
-            '<button onclick="openClientLoyaltyModal(\'' + c.id + '\')" class="px-2 py-1 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold text-[11px] active:scale-95 transition-all" title="Ver pase digital y compartir">Pase 📲</button>' +
+            '<button onclick="addLoyaltyStamp(\'' + c.id + '\')" class="px-2 py-1 rounded-xl bg-white hover:bg-amber-100 text-amber-800 font-bold text-[11px] border border-amber-200 shadow-sm active:scale-95 transition-all" title="Sumar sello">+ Patita</button>' +
+            '<button onclick="openClientLoyaltyModal(\'' + c.id + '\')" class="px-2 py-1 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold text-[11px] active:scale-95 transition-all" title="Ver pase digital y compartir">Pase</button>' +
           '</div>' +
         '</div>';
 
@@ -1402,13 +1422,13 @@
         card.innerHTML = `
           <div class="flex items-start justify-between gap-2">
             <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-black text-base flex items-center justify-center shadow-sm flex-shrink-0">
+              <div class="w-11 h-11 rounded-2xl bg-amber-600 text-white font-black text-base flex items-center justify-center shadow-sm flex-shrink-0">
                 ${initial}
               </div>
               <div>
                 <div class="flex items-center gap-1.5 flex-wrap">
                   <h3 class="font-black text-sm text-slate-900">${c.name}</h3>
-                  ${c.breed ? `<span class="text-[11px] font-bold text-amber-800 bg-amber-100 border border-amber-200 px-2 py-0.2 rounded-full">🐶 ${c.breed}</span>` : ''}
+                  ${c.breed ? `<span class="text-[11px] font-bold text-amber-800 bg-amber-100 border border-amber-200 px-2 py-0.2 rounded-full">${c.breed}</span>` : ''}
                 </div>
                 <div class="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5 flex-wrap">
                   <span class="font-bold text-slate-700">Dueño/a:</span> ${c.owner || 'Cliente'}
@@ -1514,10 +1534,7 @@
       if (!c) return;
 
       const weeks = calculateWeeksAgo(c.lastVisit);
-      let phone = String(c.phone || '').replace(/\D/g, '');
-      if (!phone.startsWith('54') && phone.length === 10) {
-        phone = '549' + phone;
-      }
+      let phone = formatArgentineWhatsApp(c.phone);
 
       let messageTemplate = settings.template || DEFAULT_SETTINGS.template;
       let text = messageTemplate
@@ -1533,7 +1550,9 @@
       renderClients();
 
       const encoded = encodeURIComponent(text);
-      const url = `https://wa.me/${phone}?text=${encoded}`;
+      const url = phone 
+        ? `https://api.whatsapp.com/send?phone=${phone}&text=${encoded}`
+        : `https://api.whatsapp.com/send?text=${encoded}`;
       window.open(url, '_blank');
       showToast(`Recordatorio enviado a ${c.owner} (${c.name})`, '💬');
     }
@@ -2234,8 +2253,7 @@
       const date = formatDateAR(bookingState.selectedDate);
       const hour = bookingState.selectedHour;
 
-      let phone = settings.salonPhone || '';
-      phone = phone.replace(/\D/g, '');
+      let phone = formatArgentineWhatsApp(settings.salonPhone);
 
       if (!phone) {
         alert('La peluquería canina no tiene configurado su número de WhatsApp de atención todavía.');
@@ -2252,7 +2270,7 @@
       msg = cleanWhatsAppText(msg);
 
       const encoded = encodeURIComponent(msg);
-      window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+      window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encoded}`, '_blank');
     }
 
     // App Initializer
@@ -2269,20 +2287,20 @@
   <!-- ========================================== -->
   <!-- VISTA 3: TARJETA DIGITAL DE BENEFICIOS     -->
   <!-- ========================================== -->
-  <div id="customerPassView" class="hidden min-h-screen w-full flex flex-col items-center justify-center p-4 bg-gradient-to-b from-[#FFFDF9] via-[#FFF8EE] to-[#FED7AA]">
-    <div class="w-full max-w-sm rounded-3xl bg-white border border-amber-200 p-6 shadow-2xl space-y-5 text-center relative overflow-hidden">
-      <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl"></div>
+  <div id="customerPassView" class="hidden min-h-screen w-full flex flex-col items-center justify-center p-4 bg-[#FFFDF9]">
+    <div class="w-full max-w-sm rounded-3xl bg-white border border-amber-200 p-6 shadow-xl space-y-5 text-center relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl"></div>
 
       <!-- Encabezado con Logo -->
       <div class="flex flex-col items-center space-y-2">
-        <div id="passLogoBox" class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 p-0.5 shadow-md flex items-center justify-center overflow-hidden">
+        <div id="passLogoBox" class="w-16 h-16 rounded-full ring-2 ring-amber-600/30 p-0.5 shadow-sm flex items-center justify-center overflow-hidden">
           <div class="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
             <span class="text-2xl">🐶</span>
           </div>
         </div>
         <div>
           <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-black uppercase tracking-wider mb-1">
-            <span>🐾 Club de Huellitas Frecuentes</span>
+            <span>Club de Huellitas Frecuentes</span>
           </div>
           <h2 id="passSalonName" class="text-xl font-black text-slate-900 tracking-tight">Grooming · Huellitas</h2>
           <p class="text-xs text-amber-700 font-semibold">Tarjeta Digital de Beneficios</p>
@@ -2317,7 +2335,7 @@
       <p class="text-[11px] text-slate-400">Mostrá este código en la peluquería para sumar patitas</p>
 
       <!-- Botón Guardar en Celular -->
-      <button onclick="savePassToHome()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition-all">
+      <button onclick="savePassToHome()" class="w-full py-3.5 px-4 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all">
         <span>📲 Guardar en Pantalla de Inicio</span>
       </button>
 
@@ -2401,7 +2419,7 @@
       </div>
 
       <div id="btnRedeemRewardInModal" class="hidden pt-1">
-        <button onclick="redeemCurrentClientReward()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black text-xs uppercase tracking-wider active:scale-95 transition-all shadow-lg animate-bounce">
+        <button onclick="redeemCurrentClientReward()" class="w-full py-3 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-black text-xs uppercase tracking-wider active:scale-95 transition-all shadow-sm">
           🎁 Canjear Baño o Corte Gratis
         </button>
       </div>
@@ -2872,10 +2890,10 @@
         const cleanClient = cleanWhatsAppText(name);
         const msg = `¡Hola ${cleanSalon}! Soy *${cleanClient}*.\n✅ *Ya dejé agendado mi turno en el turnero online:*\n\n• *Servicio:* ${srvText}\n• *Día:* ${bookingState.selectedDateLabel}\n• *Horario:* ${hourStr} hs\n\n¡Muchas gracias!`;
 
-        const phone = (bookingState.salonPhone || '').replace(/[^0-9]/g, '');
+        const phone = formatArgentineWhatsApp(bookingState.salonPhone);
         const waUrl = phone 
-          ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`
-          : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+          ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`
+          : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
         window.open(waUrl, '_blank');
       };
     } else {
@@ -2935,7 +2953,7 @@
           showToast('¡Horario reservado y bloqueado en la agenda!');
         }
 
-        let phone = (settings.salonPhone || '').replace(/\D/g, '');
+        let phone = formatArgentineWhatsApp(settings.salonPhone);
         const dateFormatted = typeof formatDateAR === 'function' ? formatDateAR(dateStr) : dateStr;
         const sizeInput = document.getElementById('bookingPetSize');
         const petSize = sizeInput ? sizeInput.value : '';
@@ -2943,7 +2961,7 @@
         const ownerName = ownerEl ? ownerEl.value.trim() : 'Cliente';
         let msg = `¡Hola ${settings.salonName || 'Peluquería Canina'}! Soy ${ownerName}.\n✅ *Ya dejé agendado el turno en el turnero online:*\n\n• Mascota: ${petName} (${petSize})\n• Servicio: ${bookingState.selectedService}\n• Día: ${dateFormatted}\n• Horario: ${hourStr}\n\n¡Muchas gracias!`;
         msg = typeof cleanWhatsAppText === 'function' ? cleanWhatsAppText(msg) : msg;
-        const waUrl = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+        const waUrl = phone ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}` : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
         window.open(waUrl, '_blank');
       };
     }
